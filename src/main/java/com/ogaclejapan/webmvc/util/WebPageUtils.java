@@ -1,6 +1,7 @@
 package com.ogaclejapan.webmvc.util;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -36,6 +37,9 @@ public abstract class WebPageUtils {
 	 * @see #ok()
 	 */
 	public static AcceptModelBuilder ok(String viewName) {
+		if (!StringUtils.hasText(viewName)) {
+			throw new IllegalArgumentException("'viewName' must be not empty.");
+		}
 		return new AcceptModelBuilder(viewName);
 	}
 	
@@ -55,6 +59,9 @@ public abstract class WebPageUtils {
 	 * @see #redirect301(String)
 	 */
 	public static ForwardUrlBuilder forward(String url) {
+		if (!StringUtils.hasText(url)) {
+			throw new IllegalArgumentException("'url' must be not empty");
+		}
 		return new ForwardUrlBuilder(url);
 	}
 	
@@ -79,7 +86,11 @@ public abstract class WebPageUtils {
 	}
 	
 	private static RedirectUrlBuilder redirect(String url, RedirectType type) {
-		RedirectView view = new RedirectView(url);
+		if (!StringUtils.hasText(url)) {
+			throw new IllegalArgumentException("'url' must be not empty");
+		}
+		final boolean contextRelative = url.startsWith("/");
+		RedirectView view = new RedirectView(url, contextRelative);
 		view.setStatusCode(type.status());
 		return new RedirectUrlBuilder(view);
 	}

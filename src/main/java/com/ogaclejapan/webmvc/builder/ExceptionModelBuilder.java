@@ -15,9 +15,15 @@ public interface ExceptionModelBuilder<T> extends ModelBuilder<T> {
 	
 	/**
 	 * レスポンスとして返却するHTTPステータスコードを設定する
-	 * @param status
-	 * @return
+	 * @param status {@link HttpStatus}
+	 * @return <T>
 	 */
 	T status(HttpStatus status);
+	
+	/**
+	 * 設定されたHttpステータスコードを取得する
+	 * @return {@link HttpStatus}
+	 */
+	HttpStatus getStatus();
 
 }

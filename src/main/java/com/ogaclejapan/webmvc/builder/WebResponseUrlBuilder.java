@@ -13,9 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @param <T>
  */
-public abstract class WebPageUrlBuilder<T> extends ModelAndView implements UrlBuilder<T> {
+public abstract class WebResponseUrlBuilder<T> extends ModelAndView implements UrlBuilder<T> {
 	
-	private static final Logger logger = LoggerFactory.getLogger(WebPageUrlBuilder.class);
+	private static final Logger logger = LoggerFactory.getLogger(WebResponseUrlBuilder.class);
 	
 	private static final String VIEWNAME_FORMAT = "%s:%s";
 	
@@ -26,13 +26,13 @@ public abstract class WebPageUrlBuilder<T> extends ModelAndView implements UrlBu
 	// Constructors
 	//__/__/__/__/__/__/__/__/__/__/
 
-	public WebPageUrlBuilder(String prefix, String url) {
+	public WebResponseUrlBuilder(String prefix, String url) {
 		super(String.format(VIEWNAME_FORMAT, prefix, url));
 		this.prefix = prefix;
 		this.urlBuilder = UriComponentsBuilder.fromUriString(url);
 	}
 	
-	public WebPageUrlBuilder(RedirectView view) {
+	public WebResponseUrlBuilder(RedirectView view) {
 		super(view);
 		this.urlBuilder = UriComponentsBuilder.fromUriString(view.getUrl());
 	}

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.RedirectView;
  * @author ogaclejapan
  *
  */
-public class RedirectUrlBuilder extends WebPageUrlBuilder<RedirectUrlBuilder> {
+public class RedirectUrlBuilder extends WebResponseUrlBuilder<RedirectUrlBuilder> {
 	
 	//__/__/__/__/__/__/__/__/__/__/
 	// Constructors

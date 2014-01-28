@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author ogaclejapan
  *
  */
-public class ForwardUrlBuilder extends WebPageUrlBuilder<ForwardUrlBuilder> {
+public class ForwardUrlBuilder extends WebResponseUrlBuilder<ForwardUrlBuilder> {
 
 	private static final String PREFIX = "forward"; 
 	
