@@ -1,90 +1,87 @@
 package com.ogaclejapan.webmvc.builder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * {@link ModelAndView}のリダイレクト処理をメソッドチェーンで組み立てるベースクラス
+ * 
  * @author ogaclejapan
- *
+ * 
  * @param <T>
  */
-public abstract class WebResponseUrlBuilder<T> extends ModelAndView implements UrlBuilder<T> {
-	
-	private static final Logger logger = LoggerFactory.getLogger(WebResponseUrlBuilder.class);
-	
-	private static final String VIEWNAME_FORMAT = "%s:%s";
-	
-	private final UriComponentsBuilder urlBuilder;
-	private String prefix = null;
-	
-	//__/__/__/__/__/__/__/__/__/__/
-	// Constructors
-	//__/__/__/__/__/__/__/__/__/__/
+public class WebResponseUrlBuilder<T extends UrlBuilder<T>> implements UrlBuilder<T> {
 
-	public WebResponseUrlBuilder(String prefix, String url) {
-		super(String.format(VIEWNAME_FORMAT, prefix, url));
-		this.prefix = prefix;
-		this.urlBuilder = UriComponentsBuilder.fromUriString(url);
-	}
-	
-	public WebResponseUrlBuilder(RedirectView view) {
-		super(view);
+	private final T parent;
+	private final AbstractUrlBasedView view;
+	private final UriComponentsBuilder urlBuilder;
+
+	// __/__/__/__/__/__/__/__/__/__/
+	// Constructors
+	// __/__/__/__/__/__/__/__/__/__/
+
+	public WebResponseUrlBuilder(T parent, AbstractUrlBasedView view) {
+		this.parent = parent;
+		this.view = view;
 		this.urlBuilder = UriComponentsBuilder.fromUriString(view.getUrl());
 	}
-	
-	//__/__/__/__/__/__/__/__/__/__/
+
+	// __/__/__/__/__/__/__/__/__/__/
 	// Methods
-	//__/__/__/__/__/__/__/__/__/__/
+	// __/__/__/__/__/__/__/__/__/__/
 
 	@Override
-	public abstract T path(String path);
+	public T path(String path) {
+		addPath(path);
+		return getBuilder();
+	}
 
 	@Override
-	public abstract T query(String query);
+	public T query(String query) {
+		addQuery(query);
+		return getBuilder();
+	}
 
 	@Override
-	public abstract T queryParam(String name, Object... values);
+	public T queryParam(String name, Object... values) {
+		addQueryParam(name, values);
+		return getBuilder();
+	}
 
 	@Override
-	public abstract T fragment(String fragment);
-	
+	public T fragment(String fragment) {
+		addFragment(fragment);
+		return getBuilder();
+	}
+
+	protected T getBuilder() {
+		return parent;
+	}
+
 	protected void addPath(String path) {
-		urlBuilder.path(path);
-		resetUrl();
+		Assert.notNull(path, "'path' must not be null.");
+		reset(urlBuilder.path(path).build(true).toUriString());
 	}
-	
+
 	protected void addQuery(String query) {
-		urlBuilder.query(query);
-		resetUrl();
+		Assert.notNull(query, "'query' must not be null.");
+		reset(urlBuilder.query(query).build(true).toUriString());
 	}
-	
+
 	protected void addQueryParam(String name, Object... values) {
-		urlBuilder.queryParam(name, values);
-		resetUrl();
+		Assert.notNull(name, "'name' must not be null.");
+		reset(urlBuilder.queryParam(name, values).build(true).toUriString());
 	}
-	
+
 	protected void addFragment(String fragment) {
-		urlBuilder.fragment(fragment);
-		resetUrl();
+		Assert.notNull(fragment, "'fragment' must not be null.");
+		reset(urlBuilder.fragment(fragment).build(true).toUriString());
 	}
-	
-	private void resetUrl() {
-		final String url = urlBuilder.build(true).toUriString();
-		if (prefix != null) {
-			setViewName(String.format("%s:%s", prefix, url));
-		} else {
-			View view = getView();
-			if (view != null && view instanceof RedirectView) {
-				((RedirectView)view).setUrl(url);
-			} else {
-				logger.error("Could not reset url.");
-			}
-		}
+
+	private void reset(String url) {
+		view.setUrl(url);
 	}
 
 }

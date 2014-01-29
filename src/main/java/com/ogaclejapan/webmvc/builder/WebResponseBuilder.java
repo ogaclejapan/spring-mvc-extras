@@ -24,7 +24,7 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 
 	private static final Logger logger = LoggerFactory.getLogger(WebResponseBuilder.class);
 
-	private final T builder;
+	private final T parent;
 	private final ToastType toastType;
 	private final AlertType alertType;
 	
@@ -36,8 +36,8 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 		this(builder, ToastType.Info, AlertType.Info);
 	}
 
-	public WebResponseBuilder(T builder, ToastType toastType, AlertType alertType) {
-		this.builder = builder;
+	public WebResponseBuilder(T parent, ToastType toastType, AlertType alertType) {
+		this.parent = parent;
 		this.toastType = toastType;
 		this.alertType = alertType;
 	}
@@ -60,7 +60,7 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 	 */
 	@Override
 	public DataIfBuilder<T> dataIf(boolean condition) {
-		return (condition) ? DataIfInternalHandler.applyTo(builder) : DataIfInternalHandler.nullObject(builder);
+		return (condition) ? DataIfInternalHandler.applyTo(parent) : DataIfInternalHandler.nullObject(parent);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 	 */
 	@Override
 	public ToastIfBuilder<T> toastIf(boolean condition) {
-		return (condition) ? ToastIfInternalHandler.applyTo(builder) : ToastIfInternalHandler.nullObject(builder);
+		return (condition) ? ToastIfInternalHandler.applyTo(parent) : ToastIfInternalHandler.nullObject(parent);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 	 */
 	@Override
 	public AlertIfBuilder<T> alertIf(boolean condition) {
-		return (condition) ? AlertIfInternalHandler.applyTo(builder) : AlertIfInternalHandler.nullObject(builder);
+		return (condition) ? AlertIfInternalHandler.applyTo(parent) : AlertIfInternalHandler.nullObject(parent);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class WebResponseBuilder<T extends ModelBuilder<T>> implements ModelBuild
 	}
 
 	protected T getBuilder() {
-		return builder;
+		return parent;
 	}
 
 	protected final void addData(String key, Object value) {

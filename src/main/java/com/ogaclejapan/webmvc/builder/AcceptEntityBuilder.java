@@ -4,16 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
 
 import com.ogaclejapan.webmvc.model.AlertType;
-import com.ogaclejapan.webmvc.model.ApiEntity;
+import com.ogaclejapan.webmvc.model.Entity;
 import com.ogaclejapan.webmvc.model.ToastType;
 
 /**
- * リクエスト処理正常時に返却する{@link ApiEntity}を組み立てるクラス
+ * リクエスト処理正常時に返却する{@link Entity}を組み立てるクラス
  * 
  * @author ogaclejapan
  * 
  */
-public class AcceptEntityBuilder extends ApiEntity implements ModelBuilder<AcceptEntityBuilder> {
+public class AcceptEntityBuilder extends Entity implements ModelBuilder<AcceptEntityBuilder> {
 
 	private final WebResponseBuilder<AcceptEntityBuilder> builder = new WebResponseBuilder<AcceptEntityBuilder>(
 			this, ToastType.Success, AlertType.Success);

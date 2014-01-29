@@ -4,6 +4,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ogaclejapan.webmvc.model.AlertType;
+import com.ogaclejapan.webmvc.model.Page;
 import com.ogaclejapan.webmvc.model.ToastType;
 
 /**
@@ -12,16 +13,16 @@ import com.ogaclejapan.webmvc.model.ToastType;
  * @author ogaclejapan
  * 
  */
-public final class RejectModelBuilder extends ModelAndView implements ModelBuilder<RejectModelBuilder> {
+public final class RejectPageBuilder extends Page implements ModelBuilder<RejectPageBuilder> {
 
-	private final WebResponseBuilder<RejectModelBuilder> builder = new WebResponseBuilder<RejectModelBuilder>(this,
+	private final WebResponseBuilder<RejectPageBuilder> builder = new WebResponseBuilder<RejectPageBuilder>(this,
 			ToastType.Warning, AlertType.Warning);
 
 	// __/__/__/__/__/__/__/__/__/__/
 	// Constructors
 	// __/__/__/__/__/__/__/__/__/__/
 
-	public RejectModelBuilder() {
+	public RejectPageBuilder() {
 		super();
 	}
 
@@ -30,62 +31,62 @@ public final class RejectModelBuilder extends ModelAndView implements ModelBuild
 	// __/__/__/__/__/__/__/__/__/__/
 
 	@Override
-	public RejectModelBuilder data(String key, Object value) {
+	public RejectPageBuilder data(String key, Object value) {
 		return builder.data(key, value);
 	}
 
 	@Override
-	public DataIfBuilder<RejectModelBuilder> dataIf(boolean condition) {
+	public DataIfBuilder<RejectPageBuilder> dataIf(boolean condition) {
 		return builder.dataIf(condition);
 	}
 
 	@Override
-	public RejectModelBuilder toast(String message) {
+	public RejectPageBuilder toast(String message) {
 		return builder.toast(message);
 	}
 
 	@Override
-	public RejectModelBuilder toast(String message, ToastType type) {
+	public RejectPageBuilder toast(String message, ToastType type) {
 		return builder.toast(message, type);
 	}
 
 	@Override
-	public RejectModelBuilder toast(String message, String title) {
+	public RejectPageBuilder toast(String message, String title) {
 		return builder.toast(message, title);
 	}
 
 	@Override
-	public RejectModelBuilder toast(String message, String title, ToastType type) {
+	public RejectPageBuilder toast(String message, String title, ToastType type) {
 		return builder.toast(message, title, type);
 	}
 
 	@Override
-	public ToastIfBuilder<RejectModelBuilder> toastIf(boolean condition) {
+	public ToastIfBuilder<RejectPageBuilder> toastIf(boolean condition) {
 		return builder.toastIf(condition);
 	}
 
 	@Override
-	public RejectModelBuilder alert(String message) {
+	public RejectPageBuilder alert(String message) {
 		return builder.alert(message);
 	}
 
 	@Override
-	public RejectModelBuilder alert(String message, AlertType type) {
+	public RejectPageBuilder alert(String message, AlertType type) {
 		return builder.alert(message, type);
 	}
 
 	@Override
-	public RejectModelBuilder alert(String message, String title) {
+	public RejectPageBuilder alert(String message, String title) {
 		return builder.alert(message, title);
 	}
 
 	@Override
-	public RejectModelBuilder alert(String message, String title, AlertType type) {
+	public RejectPageBuilder alert(String message, String title, AlertType type) {
 		return builder.alert(message, title, type);
 	}
 
 	@Override
-	public AlertIfBuilder<RejectModelBuilder> alertIf(boolean condition) {
+	public AlertIfBuilder<RejectPageBuilder> alertIf(boolean condition) {
 		return builder.alertIf(condition);
 	}
 

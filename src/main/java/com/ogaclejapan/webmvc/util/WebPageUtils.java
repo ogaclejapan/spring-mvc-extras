@@ -3,12 +3,13 @@ package com.ogaclejapan.webmvc.util;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.ogaclejapan.webmvc.builder.AcceptModelBuilder;
+import com.ogaclejapan.webmvc.builder.AcceptPageBuilder;
 import com.ogaclejapan.webmvc.builder.ForwardUrlBuilder;
 import com.ogaclejapan.webmvc.builder.RedirectUrlBuilder;
-import com.ogaclejapan.webmvc.builder.RejectModelBuilder;
+import com.ogaclejapan.webmvc.builder.RejectPageBuilder;
 
 /**
  * {@link ModelAndView}を拡張して返却モデルをメソッドチェーンで記述できるWebページ用ユーティリティ
@@ -26,8 +27,8 @@ public abstract class WebPageUtils {
 	 * @return
 	 * @see #ok(String)
 	 */
-	public static AcceptModelBuilder ok() {
-		return new AcceptModelBuilder();
+	public static AcceptPageBuilder ok() {
+		return new AcceptPageBuilder();
 	}
 	
 	/**
@@ -36,19 +37,19 @@ public abstract class WebPageUtils {
 	 * @return
 	 * @see #ok()
 	 */
-	public static AcceptModelBuilder ok(String viewName) {
+	public static AcceptPageBuilder ok(String viewName) {
 		if (!StringUtils.hasText(viewName)) {
 			throw new IllegalArgumentException("'viewName' must be not empty.");
 		}
-		return new AcceptModelBuilder(viewName);
+		return new AcceptPageBuilder(viewName);
 	}
 	
 	/**
 	 * リクエストを破棄する
 	 * @return 
 	 */
-	public static RejectModelBuilder reject() {
-		return new RejectModelBuilder();
+	public static RejectPageBuilder reject() {
+		return new RejectPageBuilder();
 	}
 	
 	/**
@@ -62,7 +63,7 @@ public abstract class WebPageUtils {
 		if (!StringUtils.hasText(url)) {
 			throw new IllegalArgumentException("'url' must be not empty");
 		}
-		return new ForwardUrlBuilder(url);
+		return new ForwardUrlBuilder(new InternalResourceView(url));
 	}
 	
 	/**

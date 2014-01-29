@@ -11,7 +11,7 @@ import org.springframework.ui.ModelMap;
  * @author ogaclejapan
  *
  */
-public class ApiEntity extends ResponseEntity<ModelMap> {
+public class Entity extends ResponseEntity<ModelMap> {
 	
 	private final ModelMap model;
 	
@@ -19,11 +19,11 @@ public class ApiEntity extends ResponseEntity<ModelMap> {
 	// Constrcutors
 	//__/__/__/__/__/__/__/__/__/__/
 
-	public ApiEntity(HttpStatus statusCode) {
+	public Entity(HttpStatus statusCode) {
 		this(new ModelMap(), statusCode);
 	}
 
-	private ApiEntity(ModelMap body, HttpStatus statusCode) {
+	private Entity(ModelMap body, HttpStatus statusCode) {
 		super(body, statusCode);
 		this.model = body;
 	}
@@ -32,12 +32,12 @@ public class ApiEntity extends ResponseEntity<ModelMap> {
 	// Methods
 	//__/__/__/__/__/__/__/__/__/__/
 
-	public ApiEntity addObject(String attributeName, Object attributeValue) {
+	public Entity addObject(String attributeName, Object attributeValue) {
 		getModelMap().addAttribute(attributeName, attributeValue);
 		return this;
 	}
 	
-	public ApiEntity addAllObjects(Map<String, ?> modelMap) {
+	public Entity addAllObjects(Map<String, ?> modelMap) {
 		getModelMap().addAllAttributes(modelMap);
 		return this;
 	}

@@ -4,16 +4,16 @@ import org.springframework.http.HttpStatus;
 
 import com.ogaclejapan.webmvc.builder.AcceptEntityBuilder;
 import com.ogaclejapan.webmvc.builder.RejectEntityBuilder;
-import com.ogaclejapan.webmvc.model.ApiEntity;
-import com.ogaclejapan.webmvc.util.WebApiUtils;
+import com.ogaclejapan.webmvc.model.Entity;
+import com.ogaclejapan.webmvc.util.WebEntityUtils;
 
 /**
- * {@link ApiEntity}で返却する処理をメソッドチェーンで記述できるAPI用のコントローラー
- * <p>このクラスのメソッドは{@link ApiEntity}を戻り値とすることを前ß提としている 
+ * {@link Entity}で返却する処理をメソッドチェーンで記述できるAPI用のコントローラー
+ * <p>このクラスのメソッドは{@link Entity}を戻り値とすることを前ß提としている 
  * @author ogaclejapan
- * @see WebApiUtils
+ * @see WebEntityUtils
  */
-public abstract class WebApiController {
+public abstract class WebEntityController {
 	
 	//__/__/__/__/__/__/__/__/__/__/
 	// Methods
@@ -24,7 +24,7 @@ public abstract class WebApiController {
 	 * @return
 	 */
 	protected AcceptEntityBuilder ok() {
-		return WebApiUtils.ok();
+		return WebEntityUtils.ok();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public abstract class WebApiController {
 	 * @see #reject(HttpStatus)
 	 */
 	protected RejectEntityBuilder reject() {
-		return WebApiUtils.reject();
+		return WebEntityUtils.reject();
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public abstract class WebApiController {
 	 * @return
 	 */
 	protected RejectEntityBuilder reject(HttpStatus status) {
-		return WebApiUtils.reject(status);
+		return WebEntityUtils.reject(status);
 	}
 
 }

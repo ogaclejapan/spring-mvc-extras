@@ -2,10 +2,10 @@ package com.ogaclejapan.webmvc;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ogaclejapan.webmvc.builder.AcceptModelBuilder;
+import com.ogaclejapan.webmvc.builder.AcceptPageBuilder;
 import com.ogaclejapan.webmvc.builder.ForwardUrlBuilder;
 import com.ogaclejapan.webmvc.builder.RedirectUrlBuilder;
-import com.ogaclejapan.webmvc.builder.RejectModelBuilder;
+import com.ogaclejapan.webmvc.builder.RejectPageBuilder;
 import com.ogaclejapan.webmvc.util.WebPageUtils;
 
 /**
@@ -25,7 +25,7 @@ public abstract class WebPageController {
 	 * @return
 	 * @see #ok(String)
 	 */
-	protected AcceptModelBuilder ok() {
+	protected AcceptPageBuilder ok() {
 		return WebPageUtils.ok();
 	}
 	
@@ -35,7 +35,7 @@ public abstract class WebPageController {
 	 * @return
 	 * @see #ok()
 	 */
-	protected AcceptModelBuilder ok(String viewName) {
+	protected AcceptPageBuilder ok(String viewName) {
 		return WebPageUtils.ok(viewName);
 	}
 	
@@ -43,7 +43,7 @@ public abstract class WebPageController {
 	 * リクエストを破棄する
 	 * @return 
 	 */
-	protected RejectModelBuilder reject() {
+	protected RejectPageBuilder reject() {
 		return WebPageUtils.reject();
 	}
 	

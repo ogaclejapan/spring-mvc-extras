@@ -22,12 +22,12 @@ public class WebResponseExceptionBuilder<T extends ExceptionModelBuilder<T>> ext
 	// Constructors
 	//__/__/__/__/__/__/__/__/__/__/
 
-	public WebResponseExceptionBuilder(T builder) {
-		this(builder, ToastType.Error, AlertType.Error);
+	public WebResponseExceptionBuilder(T parent) {
+		this(parent, ToastType.Error, AlertType.Error);
 	}
 	
-	public WebResponseExceptionBuilder(T builder, ToastType toastType, AlertType alertType) {
-		super(builder, toastType, alertType);
+	public WebResponseExceptionBuilder(T parent, ToastType toastType, AlertType alertType) {
+		super(parent, toastType, alertType);
 	}
 	
 	// __/__/__/__/__/__/__/__/__/__/

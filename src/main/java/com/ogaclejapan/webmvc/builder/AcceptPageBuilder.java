@@ -4,6 +4,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ogaclejapan.webmvc.model.AlertType;
+import com.ogaclejapan.webmvc.model.Page;
 import com.ogaclejapan.webmvc.model.ToastType;
 
 /**
@@ -12,20 +13,20 @@ import com.ogaclejapan.webmvc.model.ToastType;
  * @author ogaclejapan
  * 
  */
-public final class AcceptModelBuilder extends ModelAndView implements ModelBuilder<AcceptModelBuilder> {
+public final class AcceptPageBuilder extends Page implements ModelBuilder<AcceptPageBuilder> {
 
-	private final WebResponseBuilder<AcceptModelBuilder> builder = new WebResponseBuilder<AcceptModelBuilder>(this,
+	private final WebResponseBuilder<AcceptPageBuilder> builder = new WebResponseBuilder<AcceptPageBuilder>(this,
 			ToastType.Success, AlertType.Success);;
 
 	// __/__/__/__/__/__/__/__/__/__/
 	// Constructors
 	// __/__/__/__/__/__/__/__/__/__/
 
-	public AcceptModelBuilder() {
+	public AcceptPageBuilder() {
 		super();
 	}
 
-	public AcceptModelBuilder(String viewName) {
+	public AcceptPageBuilder(String viewName) {
 		super(viewName);
 	}
 
@@ -34,62 +35,62 @@ public final class AcceptModelBuilder extends ModelAndView implements ModelBuild
 	// __/__/__/__/__/__/__/__/__/__/
 
 	@Override
-	public AcceptModelBuilder data(String key, Object value) {
+	public AcceptPageBuilder data(String key, Object value) {
 		return builder.data(key, value);
 	}
 
 	@Override
-	public DataIfBuilder<AcceptModelBuilder> dataIf(boolean condition) {
+	public DataIfBuilder<AcceptPageBuilder> dataIf(boolean condition) {
 		return builder.dataIf(condition);
 	}
 
 	@Override
-	public AcceptModelBuilder toast(String message) {
+	public AcceptPageBuilder toast(String message) {
 		return builder.toast(message);
 	}
 
 	@Override
-	public AcceptModelBuilder toast(String message, ToastType type) {
+	public AcceptPageBuilder toast(String message, ToastType type) {
 		return builder.toast(message, type);
 	}
 
 	@Override
-	public AcceptModelBuilder toast(String message, String title) {
+	public AcceptPageBuilder toast(String message, String title) {
 		return builder.toast(message, title);
 	}
 
 	@Override
-	public AcceptModelBuilder toast(String message, String title, ToastType type) {
+	public AcceptPageBuilder toast(String message, String title, ToastType type) {
 		return builder.toast(message, title, type);
 	}
 
 	@Override
-	public ToastIfBuilder<AcceptModelBuilder> toastIf(boolean condition) {
+	public ToastIfBuilder<AcceptPageBuilder> toastIf(boolean condition) {
 		return builder.toastIf(condition);
 	}
 
 	@Override
-	public AcceptModelBuilder alert(String message) {
+	public AcceptPageBuilder alert(String message) {
 		return builder.alert(message);
 	}
 
 	@Override
-	public AcceptModelBuilder alert(String message, AlertType type) {
+	public AcceptPageBuilder alert(String message, AlertType type) {
 		return builder.alert(message, type);
 	}
 
 	@Override
-	public AcceptModelBuilder alert(String message, String title) {
+	public AcceptPageBuilder alert(String message, String title) {
 		return builder.alert(message, title);
 	}
 
 	@Override
-	public AcceptModelBuilder alert(String message, String title, AlertType type) {
+	public AcceptPageBuilder alert(String message, String title, AlertType type) {
 		return builder.alert(message, title, type);
 	}
 
 	@Override
-	public AlertIfBuilder<AcceptModelBuilder> alertIf(boolean condition) {
+	public AlertIfBuilder<AcceptPageBuilder> alertIf(boolean condition) {
 		return builder.alertIf(condition);
 	}
 
