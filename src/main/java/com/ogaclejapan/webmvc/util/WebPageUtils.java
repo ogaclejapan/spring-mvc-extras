@@ -6,10 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.ogaclejapan.webmvc.builder.AcceptPageBuilder;
-import com.ogaclejapan.webmvc.builder.ForwardUrlBuilder;
-import com.ogaclejapan.webmvc.builder.RedirectUrlBuilder;
-import com.ogaclejapan.webmvc.builder.RejectPageBuilder;
+import com.ogaclejapan.webmvc.AcceptPageBuilder;
+import com.ogaclejapan.webmvc.ForwardUrlBuilder;
+import com.ogaclejapan.webmvc.RedirectUrlBuilder;
+import com.ogaclejapan.webmvc.RejectPageBuilder;
 
 /**
  * {@link ModelAndView}を拡張して返却モデルをメソッドチェーンで記述できるWebページ用ユーティリティ
@@ -23,8 +23,8 @@ public abstract class WebPageUtils {
 	//__/__/__/__/__/__/__/__/__/__/
 	
 	/**
-	 * リクエストを受け入れる
-	 * @return
+	 * リクエスト要求を受け入れる
+	 * @return {@link AcceptPageBuilder}
 	 * @see #ok(String)
 	 */
 	public static AcceptPageBuilder ok() {
@@ -32,9 +32,9 @@ public abstract class WebPageUtils {
 	}
 	
 	/**
-	 * リクエストを受け入れる
+	 * リクエスト要求を受け入れる
 	 * @param viewName 描画するビュー名
-	 * @return
+	 * @return {@link AcceptPageBuilder}
 	 * @see #ok()
 	 */
 	public static AcceptPageBuilder ok(String viewName) {
@@ -45,17 +45,31 @@ public abstract class WebPageUtils {
 	}
 	
 	/**
-	 * リクエストを破棄する
-	 * @return 
+	 * リクエスト要求を破棄する
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject(String)
 	 */
 	public static RejectPageBuilder reject() {
 		return new RejectPageBuilder();
 	}
 	
 	/**
-	 * リクエストをurlにフォワードする
-	 * @param url
-	 * @return
+	 * リクエスト要求を破棄する
+	 * @param viewName 描画するビュー名
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject()
+	 */
+	public static RejectPageBuilder reject(String viewName) {
+		if (!StringUtils.hasText(viewName)) {
+			throw new IllegalArgumentException("'viewName' must be not empty.");
+		}
+		return new RejectPageBuilder(viewName);
+	}
+	
+	/**
+	 * リクエスト要求をフォワード転送する
+	 * @param url 転送先パス
+	 * @return {@link RedirectUrlBuilder}
 	 * @see #redirect(String)
 	 * @see #redirect301(String)
 	 */
@@ -67,9 +81,9 @@ public abstract class WebPageUtils {
 	}
 	
 	/**
-	 * リクエストをurlに302リダイレクトする
-	 * @param url
-	 * @return
+	 * リクエスト要求を302リダイレクト転送する
+	 * @param url 転送先URL
+	 * @return {@link RedirectUrlBuilder}
 	 * @see #redirect301(String)
 	 */
 	public static RedirectUrlBuilder redirect(String url) {
@@ -77,9 +91,9 @@ public abstract class WebPageUtils {
 	}
 	
 	/**
-	 * リクエストをurlに301リダイレクトする
-	 * @param url
-	 * @return
+	 * リクエスト要求を301リダイレクト転送する
+	 * @param url 転送先URL
+	 * @return {@link RedirectUrlBuilder}
 	 * @see #redirect(String)
 	 */
 	public static RedirectUrlBuilder redirect301(String url) {
@@ -102,7 +116,7 @@ public abstract class WebPageUtils {
 	//__/__/__/__/__/__/__/__/__/__/
 
 	/**
-	 * リダイレクト処理のタイプ値
+	 * リダイレクト転送タイプ値
 	 * @author ogaclejapan
 	 *
 	 */

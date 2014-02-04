@@ -3,25 +3,22 @@ package com.ogaclejapan.webmvc;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
 
-import com.ogaclejapan.webmvc.builder.AlertIfBuilder;
-import com.ogaclejapan.webmvc.builder.DataIfBuilder;
-import com.ogaclejapan.webmvc.builder.ExceptionModelBuilder;
-import com.ogaclejapan.webmvc.builder.WebResponseExceptionBuilder;
-import com.ogaclejapan.webmvc.builder.ToastIfBuilder;
-import com.ogaclejapan.webmvc.model.AlertType;
-import com.ogaclejapan.webmvc.model.ToastType;
-
 /**
- * 例外時に返却するモデルをメソッドチェーンで組み立てる例外クラス
+ * メソッドチェーンで例外モデルを処理する例外クラス.
  * 
  * @author ogaclejapan
  * 
  */
 @SuppressWarnings("serial")
-public final class WebException extends Exception implements ExceptionModelBuilder<WebException> {
+public final class WebException extends Exception implements Context, ResponseModelChain<WebException> {
 
-	private final WebResponseExceptionBuilder<WebException> builder = new WebResponseExceptionBuilder<WebException>(
-			this);
+	private static final ToastType toastType = ToastType.Error;
+	private static final AlertType alertType = AlertType.Error;
+
+	private final ModelMap model = new ModelMap();
+	private final ResponseModelBuilder<WebException> builder;
+	
+	private HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
 	// __/__/__/__/__/__/__/__/__/__/
 	// Constructors
@@ -29,18 +26,22 @@ public final class WebException extends Exception implements ExceptionModelBuild
 
 	public WebException() {
 		super();
+		this.builder = new ResponseModelBuilder<WebException>(this, toastType, alertType);
 	}
 
 	public WebException(String message, Throwable cause) {
 		super(message, cause);
+		this.builder = new ResponseModelBuilder<WebException>(this, toastType, alertType);
 	}
 
 	public WebException(String message) {
 		super(message);
+		this.builder = new ResponseModelBuilder<WebException>(this, toastType, alertType);
 	}
 
 	public WebException(Throwable cause) {
 		super(cause);
+		this.builder = new ResponseModelBuilder<WebException>(this, toastType, alertType);
 	}
 
 	// __/__/__/__/__/__/__/__/__/__/
@@ -51,13 +52,24 @@ public final class WebException extends Exception implements ExceptionModelBuild
 	 * {@inheritDoc}
 	 */
 	@Override
-	public WebException data(String attributeName, Object attributeValue) {
-		return builder.data(attributeName, attributeValue);
+	public WebException data(String key, Object value) {
+		return builder.data(key, value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public DataIfBuilder<WebException> dataIf(boolean condition) {
-		return builder.dataIf(condition);
+	public WebException dataIf(boolean condition, DataIfHandler then) {
+		return builder.dataIf(condition, then);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public WebException dataIf(boolean condition, DataIfHandler then, DataIfHandler elze) {
+		return builder.dataIf(condition, then, elze);
 	}
 
 	/**
@@ -96,8 +108,16 @@ public final class WebException extends Exception implements ExceptionModelBuild
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ToastIfBuilder<WebException> toastIf(boolean condition) {
-		return builder.toastIf(condition);
+	public WebException toastIf(boolean condition, ToastIfHandler then) {
+		return builder.toastIf(condition, then);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public WebException toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze) {
+		return builder.toastIf(condition, then, elze);
 	}
 
 	/**
@@ -136,32 +156,64 @@ public final class WebException extends Exception implements ExceptionModelBuild
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AlertIfBuilder<WebException> alertIf(boolean condition) {
-		return builder.alertIf(condition);
+	public WebException alertIf(boolean condition, AlertIfHandler then) {
+		return builder.alertIf(condition, then);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public WebException status(HttpStatus status) {
-		return builder.status(status);
+	public WebException alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze) {
+		return builder.alertIf(condition, then, elze);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void put(String key, Object value) {
+		model.addAttribute(key, value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ModelMap getDataModel() {
-		return builder.getDataModel();
+	public Object get(String key) {
+		return model.get(key);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean hasValue(String key) {
+		return model.containsKey(key);
+	}
+	
+	/**
+	 * 応答する{@link HttpStatus}コードを設定する
+	 * @param status
+	 */
+	public void status(HttpStatus status) {
+		this.status = status;
+	}
+	
+	/**
+	 * 応答する{@link HttpStatus}コードを取得する
+	 * @return 
+	 */
 	public HttpStatus getStatus() {
-		return builder.getStatus();
+		return status;
+	}
+	
+	/**
+	 * 例外モデルを取得する
+	 * @return {@link ModelMap}
+	 */
+	public ModelMap getModelMap() {
+		return model;
 	}
 
 }
