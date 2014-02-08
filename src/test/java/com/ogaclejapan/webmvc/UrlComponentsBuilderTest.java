@@ -53,8 +53,6 @@ public class UrlComponentsBuilderTest {
 	public void queryParam_指定したqueryパラメータがURLに追加されること() {
 		builder.queryParam("hoge", "age");
 		assertThat(url.getUrl(), is("http://ogaclejapan.com?hoge=age"));
-		builder.queryParam("foo", "bar", "buzz");
-		assertThat(url.getUrl(), is("http://ogaclejapan.com?hoge=age&foo=bar&foo=buzz"));
 	}
 	
 	@Test

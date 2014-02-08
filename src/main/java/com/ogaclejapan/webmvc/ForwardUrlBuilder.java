@@ -37,6 +37,14 @@ public final class ForwardUrlBuilder extends Page implements UrlChain<ForwardUrl
 	 * {@inheritDoc}
 	 */
 	@Override
+	public ForwardUrlBuilder path(String path, String encoding) {
+		return builder.path(path, encoding);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ForwardUrlBuilder query(String query) {
 		return builder.query(query);
 	}
@@ -45,8 +53,24 @@ public final class ForwardUrlBuilder extends Page implements UrlChain<ForwardUrl
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ForwardUrlBuilder queryParam(String name, Object... values) {
-		return builder.queryParam(name, values);
+	public ForwardUrlBuilder query(String query, String encoding) {
+		return builder.query(query, encoding);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ForwardUrlBuilder queryParam(String name, String value) {
+		return builder.queryParam(name, value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ForwardUrlBuilder queryParam(String name, String value, String encoding) {
+		return builder.queryParam(name, value, encoding);
 	}
 
 	/**
@@ -55,6 +79,14 @@ public final class ForwardUrlBuilder extends Page implements UrlChain<ForwardUrl
 	@Override
 	public ForwardUrlBuilder fragment(String fragment) {
 		return builder.fragment(fragment);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ForwardUrlBuilder fragment(String fragment, String encoding) {
+		return builder.fragment(fragment, encoding);
 	}
 
 }
