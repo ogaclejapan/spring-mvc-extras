@@ -125,8 +125,8 @@ public abstract class WebPageUtils {
 		/** 恒久的なリダイレクト {@link HttpStatus#MOVED_PERMANENTLY} */
 		Permanently(HttpStatus.MOVED_PERMANENTLY),
 		
-		/** 一時的なリダイレクト {@link HttpStatus#MOVED_TEMPORARILY} */
-		Temporarily(HttpStatus.MOVED_TEMPORARILY);
+		/** 一時的なリダイレクト {@link HttpStatus#FOUND} */
+		Temporarily(HttpStatus.FOUND);
 
 		private final HttpStatus status;
 

@@ -54,10 +54,10 @@ public interface AlertChain<T> {
 	 * 条件によりアラート通知モデルを次の{@link AlertIfHandler then}, {@link AlertIfHandler elze}どちらかで処理する
 	 * @param condition どちらの処理を実行するか判断するための条件
 	 * @param then conditionがtrueの場合に実行される{@link AlertIfHandler}
-	 * @param elze conditionがfalseの場合に実行される{@link AlertIfHandler}
+	 * @param otherwise conditionがfalseの場合に実行される{@link AlertIfHandler}
 	 * @return <T>
 	 */
-	T alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze);
+	T alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise);
 	
 
 }

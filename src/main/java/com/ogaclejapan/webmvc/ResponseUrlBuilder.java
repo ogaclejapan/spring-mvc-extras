@@ -1,6 +1,5 @@
 package com.ogaclejapan.webmvc;
 
-import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
  * URLで応答を返すベースビルダー.
@@ -19,7 +18,7 @@ public class ResponseUrlBuilder<T extends Page> implements UrlChain<T> {
 
 	public ResponseUrlBuilder(T page) {
 		this.page = page;
-		this.urlBuilder = new UrlBasedViewBuilder((AbstractUrlBasedView)page.getView());
+		this.urlBuilder = new UrlComponentsBuilder(page);
 	}
 	
 	//__/__/__/__/__/__/__/__/__/__/

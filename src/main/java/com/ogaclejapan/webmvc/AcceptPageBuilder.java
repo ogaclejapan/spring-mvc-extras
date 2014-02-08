@@ -53,8 +53,8 @@ public final class AcceptPageBuilder extends Page implements ResponseModelChain<
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptPageBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler elze) {
-		return builder.dataIf(condition, then, elze);
+	public AcceptPageBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise) {
+		return builder.dataIf(condition, then, otherwise);
 	}
 
 	/**
@@ -101,8 +101,8 @@ public final class AcceptPageBuilder extends Page implements ResponseModelChain<
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptPageBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze) {
-		return builder.toastIf(condition, then, elze);
+	public AcceptPageBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise) {
+		return builder.toastIf(condition, then, otherwise);
 	}
 
 	/**
@@ -149,8 +149,8 @@ public final class AcceptPageBuilder extends Page implements ResponseModelChain<
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptPageBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze) {
-		return builder.alertIf(condition, then, elze);
+	public AcceptPageBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
+		return builder.alertIf(condition, then, otherwise);
 	}
 
 }

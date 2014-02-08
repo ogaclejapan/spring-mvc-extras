@@ -51,8 +51,8 @@ public class ResponseModelBuilder<T extends Context> implements DataChain<T>, To
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T dataIf(boolean condition, DataIfHandler then, DataIfHandler elze) {
-		dataBuilder.dataIf(condition, then, elze);
+	public T dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise) {
+		dataBuilder.dataIf(condition, then, otherwise);
 		return model;
 	}
 
@@ -105,8 +105,8 @@ public class ResponseModelBuilder<T extends Context> implements DataChain<T>, To
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze) {
-		toastBuilder.toastIf(condition, then, elze);
+	public T toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise) {
+		toastBuilder.toastIf(condition, then, otherwise);
 		return model;
 	}
 
@@ -159,8 +159,8 @@ public class ResponseModelBuilder<T extends Context> implements DataChain<T>, To
 	 * {@inheritDoc}
 	 */
 	@Override
-	public T alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze) {
-		alertBuilder.alertIf(condition, then, elze);
+	public T alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
+		alertBuilder.alertIf(condition, then, otherwise);
 		return model;
 	}
 

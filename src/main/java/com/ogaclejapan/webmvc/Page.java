@@ -2,13 +2,14 @@ package com.ogaclejapan.webmvc;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
  * {@link ModelAndView}をラップしたページの戻り値
  * @author ogaclejapan
  *
  */
-public class Page extends ModelAndView implements Context {
+public class Page extends ModelAndView implements Context, Url {
 
 	//__/__/__/__/__/__/__/__/__/__/
 	// Constructors
@@ -53,6 +54,24 @@ public class Page extends ModelAndView implements Context {
 	public boolean hasValue(String key) {
 		return this.getModelMap().containsKey(key);
 	}
-	
 
+	@Override
+	public void setUrl(String url) {
+		View view = getView();
+		if (view instanceof AbstractUrlBasedView) {
+			((AbstractUrlBasedView)view).setUrl(url);
+		} else {
+			throw new IllegalStateException("Can not be set the url.");
+		}
+	}
+
+	@Override
+	public String getUrl() {
+		View view = getView();
+		if (view instanceof AbstractUrlBasedView) {
+			return ((AbstractUrlBasedView)view).getUrl();
+		}
+		throw new IllegalStateException("Can not be get the url.");
+	}
+	
 }

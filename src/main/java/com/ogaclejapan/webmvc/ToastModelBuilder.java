@@ -41,7 +41,7 @@ public class ToastModelBuilder implements ToastBuilder {
 	 */
 	@Override
 	public ToastBuilder toast(String message, ToastType type) {
-		return toast(message, null, defaultType);
+		return toast(message, null, type);
 	}
 
 	/**
@@ -73,11 +73,11 @@ public class ToastModelBuilder implements ToastBuilder {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ToastBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze) {
+	public ToastBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise) {
 		if (condition) {
 			then.call(this);
 		} else {
-			elze.call(this);
+			otherwise.call(this);
 		}
 		return this;
 	}

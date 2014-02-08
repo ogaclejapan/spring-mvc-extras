@@ -9,18 +9,18 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author ogaclejapan
  *
  */
-public class UrlBasedViewBuilder implements UrlBuilder {
+public class UrlComponentsBuilder implements UrlBuilder {
 
-	private final AbstractUrlBasedView view;
+	private final Url url;
 	private final UriComponentsBuilder urlBuilder;
 
 	//__/__/__/__/__/__/__/__/__/__/
 	// Constructors
 	//__/__/__/__/__/__/__/__/__/__/
 
-	public UrlBasedViewBuilder(AbstractUrlBasedView view) {
-		this.view = view;
-		this.urlBuilder = UriComponentsBuilder.fromUriString(view.getUrl());
+	public UrlComponentsBuilder(Url url) {
+		this.url = url;
+		this.urlBuilder = UriComponentsBuilder.fromUriString(url.getUrl());
 	}
 
 	//__/__/__/__/__/__/__/__/__/__/
@@ -84,7 +84,7 @@ public class UrlBasedViewBuilder implements UrlBuilder {
 	}
 
 	private void reset(String url) {
-		view.setUrl(url);
+		this.url.setUrl(url);
 	}
 
 }

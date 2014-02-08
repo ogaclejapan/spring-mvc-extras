@@ -41,7 +41,7 @@ public class AlertModelBuilder implements AlertBuilder {
 	 */
 	@Override
 	public AlertBuilder alert(String message, AlertType type) {
-		return alert(message, null, defaultType);
+		return alert(message, null, type);
 	}
 
 	/**
@@ -73,11 +73,11 @@ public class AlertModelBuilder implements AlertBuilder {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AlertBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze) {
+	public AlertBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
 		if (condition) {
 			then.call(this);
 		} else {
-			elze.call(this);
+			otherwise.call(this);
 		}
 		return this;
 	}

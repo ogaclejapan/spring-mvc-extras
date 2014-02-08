@@ -28,9 +28,9 @@ public interface DataChain<T> {
 	 * 条件によりデータモデルを次の{@link DataIfHandler then}, {@link DataIfHandler elze}どちらかで処理する
 	 * @param condition どちらの処理を実行するか判断するための条件
 	 * @param then conditionがtrueの場合に実行される{@link DataIfHandler}
-	 * @param elze conditionがfalseの場合に実行される{@link DataIfHandler}
+	 * @param otherwise conditionがfalseの場合に実行される{@link DataIfHandler}
 	 * @return <T>
 	 */
-	T dataIf(boolean condition, DataIfHandler then, DataIfHandler elze);
+	T dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise);
 
 }

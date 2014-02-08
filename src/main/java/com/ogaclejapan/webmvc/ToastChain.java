@@ -53,9 +53,9 @@ public interface ToastChain<T> {
 	 * 条件によりトースト通知モデルを次の{@link ToastIfHandler then}, {@link ToastIfHandler elze}どちらかで処理する
 	 * @param condition どちらの処理を実行するか判断するための条件
 	 * @param then conditionがtrueの場合に実行される{@link ToastIfHandler}
-	 * @param elze conditionがfalseの場合に実行される{@link ToastIfHandler}
+	 * @param otherwise conditionがfalseの場合に実行される{@link ToastIfHandler}
 	 * @return <T>
 	 */
-	T toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze);
+	T toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise);
 
 }

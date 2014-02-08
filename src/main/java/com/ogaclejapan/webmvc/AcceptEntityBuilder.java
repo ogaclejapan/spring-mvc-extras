@@ -48,8 +48,8 @@ public final class AcceptEntityBuilder extends Entity implements ResponseModelCh
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptEntityBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler elze) {
-		return builder.dataIf(condition, then, elze);
+	public AcceptEntityBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise) {
+		return builder.dataIf(condition, then, otherwise);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public final class AcceptEntityBuilder extends Entity implements ResponseModelCh
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptEntityBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler elze) {
-		return builder.toastIf(condition, then, elze);
+	public AcceptEntityBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise) {
+		return builder.toastIf(condition, then, otherwise);
 	}
 
 	/**
@@ -144,8 +144,8 @@ public final class AcceptEntityBuilder extends Entity implements ResponseModelCh
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AcceptEntityBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler elze) {
-		return builder.alertIf(condition, then, elze);
+	public AcceptEntityBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
+		return builder.alertIf(condition, then, otherwise);
 	}
 
 }

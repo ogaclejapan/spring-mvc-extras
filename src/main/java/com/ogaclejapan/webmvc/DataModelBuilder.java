@@ -48,11 +48,11 @@ public class DataModelBuilder implements DataBuilder {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public DataBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler elze) {
+	public DataBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise) {
 		if (condition) {
 			then.call(this);
 		} else {
-			elze.call(this);
+			otherwise.call(this);
 		}
 		return this;
 	}
