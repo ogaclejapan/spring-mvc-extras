@@ -12,7 +12,7 @@ public interface DataIfHandler {
 	 */
 	public static final DataIfHandler NULL = new DataIfHandler() {
 		@Override
-		public void call(DataBuilder builder) { }
+		public void apply(DataBuilder builder) { }
 	};
 	
 	/**
@@ -20,6 +20,6 @@ public interface DataIfHandler {
 	 * <p>条件に一致する場合のみ呼び出される
 	 * @param builder
 	 */
-	void call(DataBuilder builder);
+	void apply(DataBuilder builder);
 
 }

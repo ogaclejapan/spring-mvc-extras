@@ -75,9 +75,9 @@ public class AlertModelBuilder implements AlertBuilder {
 	@Override
 	public AlertBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
 		if (condition) {
-			then.call(this);
+			then.apply(this);
 		} else {
-			otherwise.call(this);
+			otherwise.apply(this);
 		}
 		return this;
 	}

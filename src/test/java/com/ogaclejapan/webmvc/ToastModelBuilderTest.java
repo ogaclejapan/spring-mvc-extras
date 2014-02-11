@@ -73,7 +73,7 @@ public class ToastModelBuilderTest {
 	public void toastIf_conditionが真の場合はthenハンドラが実行されること() {
 		builder.toastIf(true, new ToastIfHandler() {
 			@Override
-			public void call(ToastBuilder builder) {
+			public void apply(ToastBuilder builder) {
 				builder.toast("called then");
 			}
 		});
@@ -86,7 +86,7 @@ public class ToastModelBuilderTest {
 		builder.toastIf(false, new ToastIfHandler() {
 
 			@Override
-			public void call(ToastBuilder builder) {
+			public void apply(ToastBuilder builder) {
 				builder.toast("called then");
 			}
 		});
@@ -98,7 +98,7 @@ public class ToastModelBuilderTest {
 	public void toastIf_conditionが偽の場合でotherwiseが指定されている場合はotherwiseハンドラが実行されること() {
 		builder.toastIf(false, ToastIfHandler.NULL, new ToastIfHandler() {
 			@Override
-			public void call(ToastBuilder builder) {
+			public void apply(ToastBuilder builder) {
 				builder.toast("called otherwise");
 			}
 		});

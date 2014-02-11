@@ -12,7 +12,7 @@ public interface AlertIfHandler {
 	 */
 	public static final AlertIfHandler NULL = new AlertIfHandler() {
 		@Override
-		public void call(AlertBuilder builder) { }
+		public void apply(AlertBuilder builder) { }
 	};
 	
 	/**
@@ -20,6 +20,6 @@ public interface AlertIfHandler {
 	 * <p>条件に一致する場合に呼び出される
 	 * @param builder 
 	 */
-	void call(AlertBuilder builder);
+	void apply(AlertBuilder builder);
 
 }

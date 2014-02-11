@@ -73,7 +73,7 @@ public class AlertModelBuilderTest {
 	public void alertIf_conditionが真の場合はthenハンドラが実行されること() {
 		builder.alertIf(true, new AlertIfHandler() {
 			@Override
-			public void call(AlertBuilder builder) {
+			public void apply(AlertBuilder builder) {
 				builder.alert("called then");
 			}
 		});
@@ -86,7 +86,7 @@ public class AlertModelBuilderTest {
 		builder.alertIf(false, new AlertIfHandler() {
 			
 			@Override
-			public void call(AlertBuilder builder) {
+			public void apply(AlertBuilder builder) {
 				builder.alert("called then");
 			}
 		});
@@ -98,7 +98,7 @@ public class AlertModelBuilderTest {
 	public void alertIf_conditionが偽の場合でotherwiseが指定されている場合はotherwiseハンドラが実行されること() {
 		builder.alertIf(false, AlertIfHandler.NULL, new AlertIfHandler() {
 			@Override
-			public void call(AlertBuilder builder) {
+			public void apply(AlertBuilder builder) {
 				builder.alert("called otherwise");
 			}
 		});

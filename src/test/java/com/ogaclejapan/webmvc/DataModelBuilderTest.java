@@ -36,7 +36,7 @@ public class DataModelBuilderTest {
 	public void dataIf_conditionが真の場合はthenハンドラが処理されること() {
 		builder.dataIf(true, new DataIfHandler() {
 			@Override
-			public void call(DataBuilder builder) {
+			public void apply(DataBuilder builder) {
 				builder.data("key1", "foo");
 			}
 		});
@@ -48,7 +48,7 @@ public class DataModelBuilderTest {
 	public void dataIf_conditionが偽でotherwiseハンドラを省略した場合はthenが処理されないこと() {
 		builder.dataIf(false, new DataIfHandler() {
 			@Override
-			public void call(DataBuilder builder) {
+			public void apply(DataBuilder builder) {
 				builder.data("key1", "foo");
 			}
 		});
@@ -60,7 +60,7 @@ public class DataModelBuilderTest {
 	public void dataIf_conditionが偽でotherwiseハンドラを指定している場合はotherwiseハンドラが処理されること() {
 		builder.dataIf(false, DataIfHandler.NULL, new DataIfHandler() {
 			@Override
-			public void call(DataBuilder builder) {
+			public void apply(DataBuilder builder) {
 				builder.data("key1", "foo");
 			}
 		});

@@ -75,9 +75,9 @@ public class ToastModelBuilder implements ToastBuilder {
 	@Override
 	public ToastBuilder toastIf(boolean condition, ToastIfHandler then, ToastIfHandler otherwise) {
 		if (condition) {
-			then.call(this);
+			then.apply(this);
 		} else {
-			otherwise.call(this);
+			otherwise.apply(this);
 		}
 		return this;
 	}

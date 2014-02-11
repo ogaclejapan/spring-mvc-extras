@@ -50,9 +50,9 @@ public class DataModelBuilder implements DataBuilder {
 	@Override
 	public DataBuilder dataIf(boolean condition, DataIfHandler then, DataIfHandler otherwise) {
 		if (condition) {
-			then.call(this);
+			then.apply(this);
 		} else {
-			otherwise.call(this);
+			otherwise.apply(this);
 		}
 		return this;
 	}

@@ -12,7 +12,7 @@ public interface ToastIfHandler {
 	 */
 	public static final ToastIfHandler NULL = new ToastIfHandler() {
 		@Override
-		public void call(ToastBuilder builder) { }
+		public void apply(ToastBuilder builder) { }
 	};
 	
 	/**
@@ -20,6 +20,6 @@ public interface ToastIfHandler {
 	 * <p>条件に一致する場合に呼び出される
 	 * @param builder
 	 */
-	void call(ToastBuilder builder);
+	void apply(ToastBuilder builder);
 
 }
