@@ -12,8 +12,8 @@ import org.springframework.ui.ModelMap;
 @SuppressWarnings("serial")
 public final class WebException extends Exception implements Context, ResponseModelChain<WebException> {
 
-	private static final ToastType toastType = ToastType.Error;
-	private static final AlertType alertType = AlertType.Error;
+	private static final ToastType toastType = ToastType.error;
+	private static final AlertType alertType = AlertType.error;
 
 	private final ModelMap model = new ModelMap();
 	private final ResponseModelBuilder<WebException> builder;

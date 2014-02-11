@@ -10,8 +10,8 @@ import org.springframework.http.HttpStatus;
  */
 public final class AcceptEntityBuilder extends Entity implements ResponseModelChain<AcceptEntityBuilder> {
 
-	private static final ToastType toastType = ToastType.Success;
-	private static final AlertType alertType = AlertType.Success;
+	private static final ToastType toastType = ToastType.success;
+	private static final AlertType alertType = AlertType.success;
 
 	private final ResponseModelBuilder<AcceptEntityBuilder> builder;
 

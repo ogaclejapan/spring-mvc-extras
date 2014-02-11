@@ -16,7 +16,7 @@ public class ToastModelBuilderTest {
 	@Before
 	public void setUp() throws Exception {
 		page = new Page();
-		builder = new ToastModelBuilder(page, ToastType.Warning);
+		builder = new ToastModelBuilder(page, ToastType.warning);
 	}
 
 	@Test
@@ -26,17 +26,17 @@ public class ToastModelBuilderTest {
 		List<Toast> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is(nullValue()));
-		assertThat(actuals.get(0).getType(), is(ToastType.Warning));
+		assertThat(actuals.get(0).getType(), is(ToastType.warning));
 	}
 
 	@Test
 	public void toast_messageとtypeを指定した場合はtitleのみがデフォルト値であること() {
-		builder.toast("hoge", ToastType.Error);
+		builder.toast("hoge", ToastType.error);
 
 		List<Toast> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is(nullValue()));
-		assertThat(actuals.get(0).getType(), is(ToastType.Error));
+		assertThat(actuals.get(0).getType(), is(ToastType.error));
 	}
 
 	@Test
@@ -46,17 +46,17 @@ public class ToastModelBuilderTest {
 		List<Toast> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is("foo"));
-		assertThat(actuals.get(0).getType(), is(ToastType.Warning));
+		assertThat(actuals.get(0).getType(), is(ToastType.warning));
 	}
 
 	@Test
 	public void toast_messageとtitleとtypeを指定した場合はすべて指定した値であること() {
-		builder.toast("hoge", "foo", ToastType.Info);
+		builder.toast("hoge", "foo", ToastType.info);
 
 		List<Toast> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is("foo"));
-		assertThat(actuals.get(0).getType(), is(ToastType.Info));
+		assertThat(actuals.get(0).getType(), is(ToastType.info));
 	}
 
 	@Test

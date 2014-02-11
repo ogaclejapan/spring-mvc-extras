@@ -10,8 +10,8 @@ import org.springframework.http.HttpStatus;
  */
 public final class AcceptPageBuilder extends Page implements ResponseModelChain<AcceptPageBuilder> {
 
-	private static final ToastType toastType = ToastType.Success;
-	private static final AlertType alertType = AlertType.Success;
+	private static final ToastType toastType = ToastType.success;
+	private static final AlertType alertType = AlertType.success;
 
 	private final ResponseModelBuilder<AcceptPageBuilder> builder;
 

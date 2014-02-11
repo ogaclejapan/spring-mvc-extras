@@ -8,13 +8,9 @@ package com.ogaclejapan.webmvc;
  */
 public enum ToastType {
 	
-	Success, 
-	Info, 
-	Warning, 
-	Error;
-	
-	public String code() {
-		return name().toLowerCase();
-	}
-	
+	success, 
+	info, 
+	warning, 
+	error;
+
 }

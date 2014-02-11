@@ -16,7 +16,7 @@ public class AlertModelBuilderTest {
 	@Before
 	public void setUp() throws Exception {
 		page = new Page();
-		builder = new AlertModelBuilder(page, AlertType.Warning);
+		builder = new AlertModelBuilder(page, AlertType.warning);
 	}
 
 	@Test
@@ -26,17 +26,17 @@ public class AlertModelBuilderTest {
 		List<Alert> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is(nullValue()));
-		assertThat(actuals.get(0).getType(), is(AlertType.Warning));
+		assertThat(actuals.get(0).getType(), is(AlertType.warning));
 	}
 	
 	@Test
 	public void alert_messageとtypeを指定した場合はtitleのみがデフォルト値であること() {
-		builder.alert("hoge", AlertType.Error);
+		builder.alert("hoge", AlertType.error);
 		
 		List<Alert> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is(nullValue()));
-		assertThat(actuals.get(0).getType(), is(AlertType.Error));
+		assertThat(actuals.get(0).getType(), is(AlertType.error));
 	}
 	
 	@Test
@@ -46,17 +46,17 @@ public class AlertModelBuilderTest {
 		List<Alert> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is("foo"));
-		assertThat(actuals.get(0).getType(), is(AlertType.Warning));
+		assertThat(actuals.get(0).getType(), is(AlertType.warning));
 	}
 	
 	@Test
 	public void alert_messageとtitleとtypeを指定した場合はすべて指定した値であること() {
-		builder.alert("hoge", "foo", AlertType.Info);
+		builder.alert("hoge", "foo", AlertType.info);
 		
 		List<Alert> actuals = getActuals();
 		assertThat(actuals.get(0).getMessage(), is("hoge"));
 		assertThat(actuals.get(0).getTitle(), is("foo"));
-		assertThat(actuals.get(0).getType(), is(AlertType.Info));
+		assertThat(actuals.get(0).getType(), is(AlertType.info));
 	}
 	
 	@Test

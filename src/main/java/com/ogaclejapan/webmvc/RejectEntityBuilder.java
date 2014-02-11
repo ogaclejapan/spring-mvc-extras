@@ -10,8 +10,8 @@ import org.springframework.http.HttpStatus;
  */
 public final class RejectEntityBuilder extends Entity implements ResponseModelChain<RejectEntityBuilder> {
 
-	private static final ToastType toastType = ToastType.Warning;
-	private static final AlertType alertType = AlertType.Warning;
+	private static final ToastType toastType = ToastType.warning;
+	private static final AlertType alertType = AlertType.warning;
 
 	private final ResponseModelBuilder<RejectEntityBuilder> builder;
 

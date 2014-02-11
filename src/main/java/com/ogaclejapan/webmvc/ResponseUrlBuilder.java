@@ -1,6 +1,5 @@
 package com.ogaclejapan.webmvc;
 
-import java.nio.charset.Charset;
 
 /**
  * URLで応答を返すベースビルダー.
