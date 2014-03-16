@@ -4,10 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ogaclejapan</groupId>
   <artifactId>spring-webmvc-extras</artifactId>
-  <version>4.0.0.RELEASE</version>
+  <version>${my.version}</version>
   <packaging>jar</packaging>
 
   <properties>
+    
+    <my.version>4.0.2.RELEASE</my.version>
 
     <!-- Project -->
     <java.encoding>UTF-8</java.encoding>
@@ -19,8 +21,8 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
-    <!-- Spring -->
-    <springframework.version>4.0.0.RELEASE</springframework.version>
+        <!-- Spring -->
+    <springframework.version>${my.version}</springframework.version>
 
     <!-- Logging -->
     <slf4j.version>1.7.5</slf4j.version>
@@ -32,6 +34,39 @@
     <mockito.version>1.9.5</mockito.version>
 
   </properties>
+
+  <profiles>
+    <profile>
+      <id>v3.2.6</id>
+      <properties>
+          <my.version>3.2.6.RELEASE</my.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>v3.2.7</id>
+      <properties>
+          <my.version>3.2.7.RELEASE</my.version>
+      </properties>
+    </profile>    
+    <profile>
+      <id>v3.2.8</id>
+      <properties>
+          <my.version>3.2.8.RELEASE</my.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>v4.0.0</id>
+      <properties>
+          <my.version>4.0.0.RELEASE</my.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>v4.0.1</id>
+      <properties>
+          <my.version>4.0.1.RELEASE</my.version>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencies>
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.ogaclejapan</groupId>
+  <artifactId>spring-webmvc-extras</artifactId>
+  <versioning>
+    <release>4.0.2.RELEASE</release>
+    <versions>
+      <version>3.2.6.RELEASE</version>
+      <version>3.2.7.RELEASE</version>
+      <version>3.2.8.RELEASE</version>
+      <version>4.0.0.RELEASE</version>
+      <version>4.0.1.RELEASE</version>
+      <version>4.0.2.RELEASE</version>
+    </versions>
+    <lastUpdated>20140316080035</lastUpdated>
+  </versioning>
+</metadata>
