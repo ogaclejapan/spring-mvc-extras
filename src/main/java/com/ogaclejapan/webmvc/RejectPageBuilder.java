@@ -1,6 +1,7 @@
 package com.ogaclejapan.webmvc;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.ModelMap;
 
 /**
  * {@link HttpStatus#OK}で応答を破棄する{@link Page}型モデルのビルダー.
@@ -21,14 +22,24 @@ public final class RejectPageBuilder extends Page implements ResponseModelChain<
 
 	public RejectPageBuilder() {
 		super();
-		this.builder = new ResponseModelBuilder<RejectPageBuilder>(this, toastType, alertType);
+		this.builder = initBuilder();
 	}
 
 	public RejectPageBuilder(String viewName) {
 		super(viewName);
-		this.builder = new ResponseModelBuilder<RejectPageBuilder>(this, toastType, alertType);
+		this.builder = initBuilder();
 	}
-
+	
+	public RejectPageBuilder(String viewName, ModelMap model) {
+		super(viewName, model);
+		this.builder = initBuilder();
+	}
+	
+	public RejectPageBuilder(ModelMap model) {
+		super(model);
+		this.builder = initBuilder();
+	}
+	
 	// __/__/__/__/__/__/__/__/__/__/
 	// Methods
 	// __/__/__/__/__/__/__/__/__/__/
@@ -151,6 +162,10 @@ public final class RejectPageBuilder extends Page implements ResponseModelChain<
 	@Override
 	public RejectPageBuilder alertIf(boolean condition, AlertIfHandler then, AlertIfHandler otherwise) {
 		return builder.alertIf(condition, then, otherwise);
+	}
+	
+	private ResponseModelBuilder<RejectPageBuilder> initBuilder() {
+		return new ResponseModelBuilder<RejectPageBuilder>(this, toastType, alertType);
 	}
 
 }

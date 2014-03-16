@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import com.ogaclejapan.webmvc.AcceptEntityBuilder;
 import com.ogaclejapan.webmvc.Entity;
 import com.ogaclejapan.webmvc.RejectEntityBuilder;
+import com.ogaclejapan.webmvc.WebException;
 
 /**
  * {@link Entity}を拡張して返却モデルをメソッドチェーンで記述できるAPI用ユーティリティ
@@ -36,5 +37,14 @@ public abstract class WebEntityUtils {
 	 */
 	public static RejectEntityBuilder reject(HttpStatus status) {
 		return new RejectEntityBuilder(status);
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param e {@link WebException}
+	 * @return {@link RejectEntityBuilder}
+	 */
+	public static RejectEntityBuilder reject(WebException e) {
+		return new RejectEntityBuilder(e.getStatus(), e.getModelMap());
 	}
 }

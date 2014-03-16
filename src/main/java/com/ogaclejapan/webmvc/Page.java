@@ -20,20 +20,20 @@ public class Page extends ModelAndView implements Context, Url {
 		super();
 	}
 	
+	public Page(View view) {
+		super(view);
+	}
+	
 	public Page(String viewName) {
 		super(viewName);
 	}
 	
-	public Page(String viewName, ModelMap model) {
+	protected Page(String viewName, ModelMap model) {
 		super(viewName, model);
 	}
 	
-	public Page(ModelMap model) {
+	protected Page(ModelMap model) {
 		this((String)null, model);
-	}
-
-	public Page(View view) {
-		super(view);
 	}
 
 	//__/__/__/__/__/__/__/__/__/__/

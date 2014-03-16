@@ -22,7 +22,7 @@ public class Entity extends ResponseEntity<ModelMap> implements Context {
 		this(statusCode, new ModelMap());
 	}
 
-	private Entity(HttpStatus statusCode, ModelMap body) {
+	protected Entity(HttpStatus statusCode, ModelMap body) {
 		super(body, statusCode);
 		this.model = body;
 	}

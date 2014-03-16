@@ -5,6 +5,7 @@ import com.ogaclejapan.webmvc.ForwardUrlBuilder;
 import com.ogaclejapan.webmvc.Page;
 import com.ogaclejapan.webmvc.RedirectUrlBuilder;
 import com.ogaclejapan.webmvc.RejectPageBuilder;
+import com.ogaclejapan.webmvc.WebException;
 import com.ogaclejapan.webmvc.util.WebPageUtils;
 
 /**
@@ -55,6 +56,27 @@ public abstract class WebPageController {
 	 */
 	protected RejectPageBuilder reject(String viewName) {
 		return WebPageUtils.reject(viewName);
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param e {@link WebException}
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject(String, WebException)
+	 */
+	protected RejectPageBuilder reject(WebException e) {
+		 return WebPageUtils.reject(e);
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param viewName 描画するビュー名
+	 * @param e {@link WebException}
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject(WebException)
+	 */
+	protected RejectPageBuilder reject(String viewName, WebException e) {
+		return WebPageUtils.reject(viewName, e);
 	}
 	
 	/**

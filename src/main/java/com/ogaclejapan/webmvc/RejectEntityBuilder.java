@@ -1,6 +1,7 @@
 package com.ogaclejapan.webmvc;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.ModelMap;
 
 /**
  * 任意の{@link HttpStatus}で応答を破棄する{@link Entity}型モデルのビルダー.
@@ -21,12 +22,17 @@ public final class RejectEntityBuilder extends Entity implements ResponseModelCh
 
 	public RejectEntityBuilder() {
 		super(HttpStatus.BAD_REQUEST);
-		this.builder = new ResponseModelBuilder<RejectEntityBuilder>(this, toastType, alertType);
+		this.builder = initBuilder();
 	}
 
 	public RejectEntityBuilder(HttpStatus status) {
 		super(status);
-		this.builder = new ResponseModelBuilder<RejectEntityBuilder>(this, toastType, alertType);
+		this.builder = initBuilder();
+	}
+	
+	public RejectEntityBuilder(HttpStatus status, ModelMap model) {
+		super(status, model);
+		this.builder = initBuilder();
 	}
 
 	// __/__/__/__/__/__/__/__/__/__/
@@ -153,4 +159,7 @@ public final class RejectEntityBuilder extends Entity implements ResponseModelCh
 		return builder.alertIf(condition, then, otherwise);
 	}
 
+	private ResponseModelBuilder<RejectEntityBuilder> initBuilder() {
+		return new ResponseModelBuilder<RejectEntityBuilder>(this, toastType, alertType);
+	}
 }

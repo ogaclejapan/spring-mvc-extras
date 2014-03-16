@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import com.ogaclejapan.webmvc.AcceptEntityBuilder;
 import com.ogaclejapan.webmvc.Entity;
 import com.ogaclejapan.webmvc.RejectEntityBuilder;
+import com.ogaclejapan.webmvc.WebException;
 import com.ogaclejapan.webmvc.util.WebEntityUtils;
 
 /**
@@ -43,6 +44,15 @@ public abstract class WebEntityController {
 	 */
 	protected RejectEntityBuilder reject(HttpStatus status) {
 		return WebEntityUtils.reject(status);
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param e {@link WebException}
+	 * @return {@link RejectEntityBuilder}
+	 */
+	protected RejectEntityBuilder reject(WebException e) {
+		return WebEntityUtils.reject(e);
 	}
 
 }

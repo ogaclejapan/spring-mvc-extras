@@ -10,6 +10,7 @@ import com.ogaclejapan.webmvc.AcceptPageBuilder;
 import com.ogaclejapan.webmvc.ForwardUrlBuilder;
 import com.ogaclejapan.webmvc.RedirectUrlBuilder;
 import com.ogaclejapan.webmvc.RejectPageBuilder;
+import com.ogaclejapan.webmvc.WebException;
 
 /**
  * {@link ModelAndView}を拡張して返却モデルをメソッドチェーンで記述できるWebページ用ユーティリティ
@@ -64,6 +65,27 @@ public abstract class WebPageUtils {
 			throw new IllegalArgumentException("'viewName' must be not empty.");
 		}
 		return new RejectPageBuilder(viewName);
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param e {@link WebException}
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject(String, WebException)
+	 */
+	public static RejectPageBuilder reject(WebException e) {
+		return new RejectPageBuilder(e.getModelMap());
+	}
+	
+	/**
+	 * リクエスト要求を破棄する
+	 * @param viewName 描画するビュー名
+	 * @param e {@link WebException}
+	 * @return {@link RejectPageBuilder}
+	 * @see #reject(WebException)
+	 */
+	public static RejectPageBuilder reject(String viewName, WebException e) {
+		return new RejectPageBuilder(viewName, e.getModelMap());
 	}
 	
 	/**
