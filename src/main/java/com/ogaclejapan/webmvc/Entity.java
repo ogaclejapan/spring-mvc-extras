@@ -19,10 +19,10 @@ public class Entity extends ResponseEntity<ModelMap> implements Context {
 	// __/__/__/__/__/__/__/__/__/__/
 
 	public Entity(HttpStatus statusCode) {
-		this(new ModelMap(), statusCode);
+		this(statusCode, new ModelMap());
 	}
 
-	private Entity(ModelMap body, HttpStatus statusCode) {
+	private Entity(HttpStatus statusCode, ModelMap body) {
 		super(body, statusCode);
 		this.model = body;
 	}

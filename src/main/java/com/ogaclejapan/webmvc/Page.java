@@ -1,5 +1,6 @@
 package com.ogaclejapan.webmvc;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
@@ -18,9 +19,17 @@ public class Page extends ModelAndView implements Context, Url {
 	public Page() {
 		super();
 	}
-
+	
 	public Page(String viewName) {
 		super(viewName);
+	}
+	
+	public Page(String viewName, ModelMap model) {
+		super(viewName, model);
+	}
+	
+	public Page(ModelMap model) {
+		this((String)null, model);
 	}
 
 	public Page(View view) {
